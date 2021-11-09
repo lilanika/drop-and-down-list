@@ -30,7 +30,7 @@ function createList() {
   // copy array with spreadOp.
   [...richestPeople]
 
-    //  map through the array to transform each element ( i call it a) and return an array of objects. { sort: math.random number / value: Mill.name } display:object
+    //  map through the array to transform each element and return an array of objects. { sort: math.random number / value: Mill.name } display:object
     .map((a) => ({ value: a, sort: Math.random() }))
     //   sort ascending by sort value with default compare Function & converting into string :display the mathrandom
     .sort((a, b) => a.sort - b.sort)
@@ -75,13 +75,14 @@ function dragStart() {
   console.log(dragStartIndex, "index order");
 }
 
-// I use dragOver to prevent the default action
 
+//dragOver to prevent the default action
 function dragOver(e) {
   // console.log('Event:', 'dragover');
   e.preventDefault();
 }
 function dragDrop() {
+
   // console.log('Event:', 'dragdrop');
   const dragEndIndex = +this.getAttribute("data-index");
   swapItems(dragStartIndex, dragEndIndex);
@@ -100,7 +101,6 @@ function swapItems(fromIndex, toIndex) {
   listItems[fromIndex].appendChild(itemTwo);
  listItems[toIndex].appendChild(itemOne);
 
-  //
 }
 function dragEnter() {
   // console.log('Event:', 'dragenter');
@@ -112,13 +112,19 @@ function dragLeave() {
 }
 
 
+
 // check the order of list items
 function checkOrder() {
+ 
   listItems.forEach((listItem, index) => {
     const personName = listItem.querySelector(".draggable").innerText.trim();
 
+    console.log(' personName', personName)
+ 
     if (personName !== richestPeople[index]) {
+      console.log(' richestPeople', richestPeople)
       listItem.classList.add("wrong");
+    
     } else {
       listItem.classList.remove("wrong");
       listItem.classList.add("right");
